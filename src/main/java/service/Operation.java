@@ -24,6 +24,7 @@ public class Operation {
             throw new OperationError(a.getClient().name, money, "SAVE");
 
 
+        // todo maybe refactor this part
         List<Double> operations = State.state.get(a);
         boolean b = operations.add(money);
         if(b)
@@ -31,10 +32,14 @@ public class Operation {
     }
 
     public static void retrieve(Account a, double money) {
-        try {
-            throw new ExecutionControl.NotImplementedException("not implemented yet");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
+        if(money > solde(a))
+            throw new OperationError(a.getClient().name, money, "RETRIEVE");
+
+        // todo need refactor this part
+        List<Double> operations = State.state.get(a);
+        double v = money*-1;
+        boolean b = operations.add(v);
+        if(b)
+            State.state.put(a, operations);
     }
 }
