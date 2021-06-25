@@ -23,14 +23,14 @@ class OperationTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {100, 10, 3, -100, 12.5, -12.4})
-    public void should_get_solde_by_account(double money) {
+    public void should_get_solde_of_his_bank_account(double money) {
         a = new Account(c, money);
         Assertions.assertEquals(money, Operation.sold(a));
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {100, 10, 3, 12.4})
-    public void should_save_positive_money_on_account(double money) {
+    public void should_save_positive_money_of_his_bank_account(double money) {
         double baseBalance = 10;
         a = new Account(c, baseBalance);
         Operation.save(a, money);
@@ -39,7 +39,7 @@ class OperationTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {-100, -10, -3, -12.5})
-    public void should_failed_save_negative_money_on_account(double money) {
+    public void should_failed_save_negative_money_of_his_bank_account(double money) {
         a = new Account(c, money);
         Assertions.assertThrows(OperationError.class, () -> Operation.save(a, money));
     }
@@ -76,12 +76,15 @@ class OperationTest {
     }
 
 
-    @Test
-    public void should_get_history_on_own_bank_account(TestReporter testReporter) {
-        a = new Account(c, 55.5);
-        Operation.save(a, 20);
-        Assertions.assertEquals(55.5, Operation.check(a).get(0).getBalance());
+    @ParameterizedTest
+    @ValueSource(doubles = {100, 10.03, 333, 12.4})
+    public void must_get_the_history_of_his_bank_account(double amout) {
+        double balance = 55.5;
+        a = new Account(c, balance);
+        Operation.save(a, amout);
+        Assertions.assertEquals(balance, Operation.check(a).get(0).getBalance());
+        balance += amout;
+        Assertions.assertEquals(balance, Operation.check(a).get(1).getBalance());
     }
-
 
 }
