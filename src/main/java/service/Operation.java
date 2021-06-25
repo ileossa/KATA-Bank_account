@@ -5,6 +5,7 @@ import service.exception.OperationError;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+import static service.History.Action.RETRIEVE;
 import static service.History.Action.SAVE;
 
 public class Operation {
@@ -18,26 +19,25 @@ public class Operation {
     public static void save(Account a, double amount) throws OperationError {
         if (amount < 0)
             throw new OperationError(a.getClient().name, amount, "SAVE");
-
-        List<History> history = State.get(a);
-        double newBalance = history.get(history.size() - 1).balance + amount;
-        history.add(new History(SAVE, ZonedDateTime.now(), amount, newBalance));
-        State.put(a, history);
+        action(a, amount, amount, SAVE);
     }
 
-    public static void retrieve(Account a, double money) {
-//        if (money > sold(a))
-//            throw new OperationError(a.getClient().name, money, "RETRIEVE");
-//
-//        List<Double> operations = State.state.get(a);
-//        double v = money * -1;
-//        operations.add(v);
-//        State.put(a, operations);
-        throw new UnsupportedOperationException("not implemented");
+    public static void retrieve(Account a, double amount) {
+        if (amount > sold(a))
+            throw new OperationError(a.getClient().name, amount, "RETRIEVE");
+        action(a, amount, amount * -1, RETRIEVE);
     }
+
 
     public static List<History> check(Account a) {
-//        return State.history.get(a);
-        throw new UnsupportedOperationException("not implemented");
+        return State.get(a);
+    }
+
+
+    private static void action(Account a, double amount, double v, History.Action retrieve) {
+        List<History> history = State.get(a);
+        double newBalance = history.get(history.size() - 1).balance + (v);
+        history.add(new History(retrieve, ZonedDateTime.now(), amount, newBalance));
+        State.put(a, history);
     }
 }
