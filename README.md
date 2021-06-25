@@ -21,3 +21,49 @@ Think of your personal bank account experience When in doubt, go for the simples
 **In order to** check my operations  
 **As a** bank client  
 **I want to** see the history (operation, date, amount, balance)  of my operations  
+
+
+# Simple Exemple
+```java
+public class Bootstrap {
+    static Client c = new Client("Toto");
+    static Account a = new Account(c, 100);
+
+
+    public static void main(String[] args){
+        Operation.retrieve(a, 10);
+        Operation.retrieve(a, 10);
+        Operation.save(a, 200);
+        Operation.sold(a);
+        String s = Operation.check(a).toString();
+        System.out.println(s);
+    }
+}
+```
+
+### Output
+```java
+[
+    History{
+        zonedDateTime=2021-06-25T15:45:31.962396+02:00[Europe/Paris], 
+        amount=0.0, 
+        balance=100.0, 
+        action=START
+    }, 
+    History{zonedDateTime=2021-06-25T15:45:31.968027+02:00[Europe/Paris], 
+        amount=10.0, 
+        balance=90.0, 
+        action=RETRIEVE
+    }, 
+    History{zonedDateTime=2021-06-25T15:45:31.968078+02:00[Europe/Paris], 
+        amount=10.0, 
+        balance=80.0, 
+        action=RETRIEVE
+    }, 
+    History{zonedDateTime=2021-06-25T15:45:31.968103+02:00[Europe/Paris], 
+        amount=200.0, 
+        balance=280.0, 
+        action=SAVE
+    }
+]
+```
