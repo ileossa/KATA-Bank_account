@@ -23,7 +23,7 @@ class OperationTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {100, 10, 3, -100, 12.5, -12.4})
-    public void should_get_solde_of_his_bank_account(double money) {
+    public void should_get_sold_of_his_bank_account(double money) {
         a = new Account(c, money);
         Assertions.assertEquals(money, Operation.sold(a));
     }
@@ -78,12 +78,12 @@ class OperationTest {
 
     @ParameterizedTest
     @ValueSource(doubles = {100, 10.03, 333, 12.4})
-    public void must_get_the_history_of_his_bank_account(double amout) {
+    public void must_get_the_history_of_his_bank_account(double amount) {
         double balance = 55.5;
         a = new Account(c, balance);
-        Operation.save(a, amout);
+        Operation.save(a, amount);
         Assertions.assertEquals(balance, Operation.check(a).get(0).getBalance());
-        balance += amout;
+        balance += amount;
         Assertions.assertEquals(balance, Operation.check(a).get(1).getBalance());
     }
 
