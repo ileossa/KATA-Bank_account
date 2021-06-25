@@ -11,9 +11,7 @@ public class Account {
     public Account(Client client, double balance) {
         this.client = client;
         this.balance = balance;
-        // todo: refactoring, mettre le asList dans le new ArrayList
-        List<Double> b = Arrays.asList(balance);
-        List<Double> l = new ArrayList<>(b);
+        List<Double> l = new ArrayList<>(Arrays.asList(balance));
         State.state.put(this, l);
     }
 
