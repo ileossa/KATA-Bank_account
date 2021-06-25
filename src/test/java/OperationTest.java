@@ -28,7 +28,7 @@ class OperationTest {
     @ValueSource(doubles = {100, 10, 3, -100, 12.5, -12.4})
     public void should_get_solde_by_account(double money) {
         a = new Account(c, money);
-        Assertions.assertEquals(money, Operation.solde(a));
+        Assertions.assertEquals(money, Operation.sold(a));
     }
 
     @ParameterizedTest
@@ -37,7 +37,7 @@ class OperationTest {
         double baseBalance = 10;
         a = new Account(c, baseBalance);
         Operation.save(a, money);
-        Assertions.assertEquals(baseBalance + money, Operation.solde(a));
+        Assertions.assertEquals(baseBalance + money, Operation.sold(a));
     }
 
     @ParameterizedTest
@@ -54,7 +54,7 @@ class OperationTest {
         int initialBalance = 10000;
         a = new Account(c, initialBalance);
         Operation.retrieve(a, money);
-        Assertions.assertEquals(initialBalance - money, Operation.solde(a));
+        Assertions.assertEquals(initialBalance - money, Operation.sold(a));
     }
 
 
