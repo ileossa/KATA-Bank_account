@@ -65,4 +65,18 @@ class OperationTest {
         Assertions.assertThrows(OperationError.class, () -> Operation.retrieve(a, money));
     }
 
+
+    @Test
+    public void should_support_multiple_operations(){
+        a = new Account(c, 100);
+        Operation.save(a, 20);
+        Operation.retrieve(a, 10);
+        Operation.save(a, 10);
+        Operation.retrieve(a, 12.3);
+        Operation.save(a, 33.33);
+        Operation.retrieve(a, 10);
+        Assertions.assertEquals(131.03, Operation.sold(a));
+    }
+
+
 }
