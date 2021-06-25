@@ -41,3 +41,4 @@ public class Operation {
         State.put(a, history);
     }
 }
+

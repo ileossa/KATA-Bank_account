@@ -7,3 +7,4 @@ public class OperationError extends RuntimeException{
     }
 
 }
+

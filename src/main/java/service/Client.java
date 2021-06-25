@@ -22,3 +22,4 @@ public class Client {
         return Objects.hash(name);
     }
 }
+

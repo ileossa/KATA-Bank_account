@@ -15,3 +15,4 @@ public class State {
         return history.put(a, operations);
     }
 }
+
