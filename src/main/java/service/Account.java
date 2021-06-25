@@ -12,15 +12,15 @@ public class Account {
         this.client = client;
 
         //todo: remove this state
-        List<Double> l = new ArrayList<>(Arrays.asList(balance));
-        State.state.put(this, l);
+//        List<Double> l = new ArrayList<>(Arrays.asList(balance));
+//        State.state.put(this, l);
 
         List<History> hl = new ArrayList<>(Arrays.asList(new History(
                 History.Action.START,
                 ZonedDateTime.now(),
                 (double) 0,
                 balance)));
-        State.history.put(this, hl);
+        State.put(this, hl);
     }
 
     public Client getClient() {

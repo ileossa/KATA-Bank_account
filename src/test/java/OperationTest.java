@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import service.Account;
 import service.Client;
 import service.Operation;
-import service.State;
 import service.exception.OperationError;
 
 @DisplayName("service.Operation class tests")
