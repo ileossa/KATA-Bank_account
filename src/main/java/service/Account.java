@@ -1,4 +1,8 @@
-import java.util.UUID;
+package service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Account {
     private Client client;
@@ -7,6 +11,10 @@ public class Account {
     public Account(Client client, double balance) {
         this.client = client;
         this.balance = balance;
+        // todo: refactoring, mettre le asList dans le new ArrayList
+        List<Double> b = Arrays.asList(balance);
+        List<Double> l = new ArrayList<>(b);
+        State.state.put(this, l);
     }
 
     public Client getClient() {
