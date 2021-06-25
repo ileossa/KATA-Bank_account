@@ -39,11 +39,8 @@ class OperationTest {
     @ParameterizedTest
     @ValueSource(doubles = {100, 10, 3, 12.4})
     public void should_save_positive_money_on_account(double money) {
-        // creation de l'account avec 10e
         double baseBalance = 10;
         a = new Account(c, baseBalance);
-
-        // on rajoute de l'argent
         Operation.save(a, money);
         Assertions.assertEquals(baseBalance + money, Operation.solde(a));
     }
@@ -54,5 +51,19 @@ class OperationTest {
         a = new Account(c, money);
         Assertions.assertThrows(OperationError.class, ()->Operation.save(a, money));
     }
+
+
+    @Test
+    public void should_retrieve_money_from_own_bank_account_with_positive_balance_at_the_end(){
+        a = new Account(c, 100);
+        Operation.retrieve(a, 10);
+        Assertions.assertEquals(90, Operation.solde(a));
+    }
+
+
+//    @Test
+//    public void should_not_retrieve_money_from_own_bank_account_with_negative_balance_at_the_end(){
+//
+//    }
 
 }

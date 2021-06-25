@@ -1,8 +1,8 @@
 package service;
 
+import jdk.jshell.spi.ExecutionControl;
 import service.exception.OperationError;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Operation {
@@ -28,5 +28,13 @@ public class Operation {
         boolean b = operations.add(money);
         if(b)
             State.state.put(a, operations);
+    }
+
+    public static void retrieve(Account a, double money) {
+        try {
+            throw new ExecutionControl.NotImplementedException("not implemented yet");
+        } catch (ExecutionControl.NotImplementedException e) {
+            e.printStackTrace();
+        }
     }
 }
