@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Operation {
 
-    public static double solde(Account a) {
+    public static double sold(Account a) {
         Double tmp = 0d;
         for (Double v : State.state.get(a)) {
             tmp += v;
