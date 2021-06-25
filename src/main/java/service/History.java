@@ -1,11 +1,9 @@
 package service;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 public class History {
 
-    // todo: extract this enum
     public enum Action {
         SAVE,
         RETRIEVE,

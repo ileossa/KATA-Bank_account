@@ -2,20 +2,15 @@ package service;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Account {
-    private Client client;
+    private final Client client;
 
     public Account(Client client, double balance) {
         this.client = client;
 
-        //todo: remove this state
-//        List<Double> l = new ArrayList<>(Arrays.asList(balance));
-//        State.state.put(this, l);
-
-        List<History> hl = new ArrayList<>(Arrays.asList(new History(
+        List<History> hl = new ArrayList<>(List.of(new History(
                 History.Action.START,
                 ZonedDateTime.now(),
                 (double) 0,
