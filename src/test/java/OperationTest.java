@@ -16,12 +16,10 @@ class OperationTest {
 
     Client c;
     Account a;
-    State state;
 
     @BeforeEach
     void createNewStack() {
         c = new Client("zeus");
-        state = new State();
     }
 
     @ParameterizedTest
@@ -67,7 +65,7 @@ class OperationTest {
 
 
     @Test
-    public void should_support_multiple_operations(){
+    public void should_support_multiple_operations() {
         a = new Account(c, 100);
         Operation.save(a, 20);
         Operation.retrieve(a, 10);
@@ -76,6 +74,14 @@ class OperationTest {
         Operation.save(a, 33.33);
         Operation.retrieve(a, 10);
         Assertions.assertEquals(131.03, Operation.sold(a));
+    }
+
+
+    @Test
+    public void should_get_history_on_own_bank_account(TestReporter testReporter) {
+        a = new Account(c, 55.5);
+        Operation.save(a, 20);
+        Assertions.assertEquals(55.5, Operation.check(a).get(0).getBalance());
     }
 
 

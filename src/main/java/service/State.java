@@ -6,5 +6,6 @@ import java.util.List;
 public class State {
 
     static HashMap<Account, List<Double>> state = new HashMap<>();
+    static HashMap<Account, List<History>> history = new HashMap<>();
 
 }

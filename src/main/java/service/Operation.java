@@ -33,4 +33,8 @@ public class Operation {
         operations.add(v);
         State.state.put(a, operations);
     }
+
+    public static List<History> check(Account a) {
+        return State.history.get(a);
+    }
 }
